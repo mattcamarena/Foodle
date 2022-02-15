@@ -45,9 +45,10 @@ var bb = 0;
 // EVENT LISTENER
 // WHERE IT LISTENS TO USER INPUT
 document.addEventListener('keydown', function(event){
+
 	if(solved == 1) return;
 
-	if(event.keyCode > 46 && event.keyCode < 91){
+	if(event.keyCode > 65 && event.keyCode < 91){
 		if(bb < 5){
 			boardValues[aa][bb] = String.fromCharCode(event.keyCode);
 			redraw_canvas(context);
@@ -131,9 +132,10 @@ function redraw_canvas(board){
 }
 
 function fillSquareColors(board){
+	
 	board.save();
-	for(var i = 0; i < 5; i++){
-		for(var j = 0; j < 6; j++){
+	for(var i = 0; i < 6; i++){
+		for(var j = 0; j < 5; j++){
 			board.beginPath();
 			board.fillStyle = boardColors[i][j];
 			board.rect(100*j,100*i,100,100);
@@ -144,6 +146,7 @@ function fillSquareColors(board){
 }
 
 function fix_Grid(board){
+	
 	board.save();
 	board.strokeStyle =  'grey';
 	var gapSize = 100;
@@ -172,9 +175,9 @@ function add_letters(board){
 	board.save();
 	board.font = "80px Arial"
 	board.fillStyle = 'lightgray';
-	for(var i = 0; i < 5; i++){
-		for(var j = 0; j < 6; j++){
-			board.fillText(boardValues[j][i],(i*100+15),(j)*100+75);
+	for(var i = 0; i < 6; i++){
+		for(var j = 0; j < 5; j++){
+			board.fillText(boardValues[i][j],(j*100+15),(i)*100+75);
 		}
 	}
 	board.restore();

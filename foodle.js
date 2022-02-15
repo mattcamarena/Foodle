@@ -1,9 +1,9 @@
 // Board Variables
 var canvas = document.getElementById( "grid" );
 var context = canvas.getContext( "2d" );
+var words = ["Apple","Melon","lemon","mango","peach","papay","berry", "anise","bacon","bagel","basil","bread","chili","yeast","wheat","water","syrup","steak","onion","olive","liver","salsa","salad","punch","roast","mochi"]
 var food = "";
 var wordMap = new Map();
-var uWord = "";
 var solved = 0;
 // Initialize 6x5 2D array heightxwidth w Empty strings
 var boardValues = new Array(6);
@@ -17,7 +17,7 @@ for (var i = 0; i < 6; i++) {
 	}
 }
 
-setWordMap("apple");
+setWordMap(words[Math.floor(Math.random()*words.length)]);
 // On first open hold empty 5/6 grid
 redraw_canvas(context);
 //draw_clear_canvas(context,100,'grey');
@@ -63,7 +63,7 @@ document.addEventListener('keydown', function(event){
 		if(aa == 6) return;
 
 		if(bb == 5){
-			if(check_valid_word()){
+			if(check_valid_word(boardValues[aa][0]+boardValues[aa][1]+boardValues[aa][2]+boardValues[aa][3]+boardValues[aa][4])){
 				var res = foodle(boardValues[aa][0]+boardValues[aa][1]+boardValues[aa][2]+boardValues[aa][3]+boardValues[aa][4]);
 
 				for(var i = 0; i < 5; i++){
@@ -99,10 +99,10 @@ function foodle(str){
 					res[i] = "#b59f3b";
 					tempMap.set(ok,tempMap.get(ok)-1);
 				}else{
-					res[i] = "black";
+					res[i] = "#3a3a3c";
 				}
 			}else{
-				res[i] = "black";
+				res[i] = "#3a3a3c";
 			}
 		}
 	}
@@ -120,7 +120,8 @@ function foodle(str){
 	return res;
 }
 
-function check_valid_word(){
+function check_valid_word(word){
+	// check that the word is in the word map
 	return true;
 }
 function redraw_canvas(board){
